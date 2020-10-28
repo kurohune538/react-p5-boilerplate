@@ -5,5 +5,10 @@
         "plugin:react/recommended",
         "prettier/react"
     ],
+    "rules": {
+        "no-undef":"off",
+        "no-empty": "off",
+        "no-restricted-globals": "off"
+    },
     "plugins": ["react"],
 }

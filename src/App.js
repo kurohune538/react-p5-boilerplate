@@ -1,14 +1,22 @@
 import React from "react";
 import "./App.css";
 import Sketch from "react-p5";
-
-function App() {
+import { useWindowSize } from "react-use";
+import p5Itself from "p5";
+import "./lib/p5.serialport";
+const App = () => {
   let x = 50;
   let y = 50;
+  let serial;
+  const { width, height } = useWindowSize();
+
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
-    p5.createCanvas(500, 500).parent(canvasParentRef);
+    p5.createCanvas(width, height).parent(canvasParentRef);
+    serial = new p5Itself.SerialPort();
+    let portlist = serial.list();
+    console.log(portlist);
   };
 
   const draw = (p5) => {
@@ -21,6 +29,6 @@ function App() {
   };
 
   return <Sketch setup={setup} draw={draw} />;
-}
+};
 
 export default App;
